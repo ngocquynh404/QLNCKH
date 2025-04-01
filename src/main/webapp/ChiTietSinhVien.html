@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>chitietSV</title>
+<style>
+    .card {
+        background: #654ea3;
+        background: linear-gradient(to right, #e96443, #904e95);
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #BA68C8
+    }
+
+    .profile-button {
+        background: rgb(99, 39, 120);
+        box-shadow: none;
+        border: none
+    }
+
+        .profile-button:hover {
+            background: #ffffff
+        }
+
+        .profile-button:focus {
+            background: #ffffff;
+            box-shadow: none
+        }
+
+        .profile-button:active {
+            background: #ffffff;
+            box-shadow: none
+        }
+
+    .back:hover {
+        color: #682773;
+        cursor: pointer
+    }
+
+    .labels {
+        font-weight: 600;
+        font-size: 15px
+    }
+
+    .add-experience:hover {
+        background: #BA68C8;
+        color: #fff;
+        cursor: pointer;
+        border: solid 1px #BA68C8
+    }
+</style>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ 
+</head>
+<body>
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/StudentDB/ProfileSV" method="post">
+                        <div class="container rounded bg-white mt-5 mb-5">
+                            <div class="row">
+                                <div class="col-md-3 border-right bg-info" >
+                                    <div  class="d-flex flex-column align-items-center text-center p-3 py-5">                                  
+	                                    <img class="rounded-circle mt-5" width="150" src="https://cdn-icons-png.flaticon.com/512/61/61205.png">
+	                                    <span class="font-weight-bold">Sinh Viên</span>
+	                                    <span class="text-black-50">ngocquynh@gmail.com</span>	                                                                   
+                                    </div>
+                                </div>
+                                <div class="col-md-5 border-right">
+                                    <div class="p-3 py-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h4 class="text-right" style="font-weight:700">Thông tin cá nhân</h4>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">Họ tên</label><input type="text" class="form-control" placeholder="first name" readonly ></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">Căn cước công dân</label><input type="text" class="form-control" readonly  placeholder="Số CCCD" ></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">Ngày sinh</label><input type="text" class="form-control" readonly placeholder="Ngày sinh" ></div> 
+                                        </div>
+                                        <div class="row mt-3">
+	                                        <div class="col-md-12"><label class="labels">Giới tính</label><input type="text" class="form-control" placeholder="Giới Tính" >
+	                                        </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">Số điện thoại</label><input name="sSDT" type="text" class="form-control" placeholder="Số điện thoại" ></div>
+                                        </div>                                  
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">Địa chỉ</label><input name="sDiaChi" type="text" class="form-control" placeholder="Địa chỉ" ></div>
+                                        </div>
+                                        <div class="mt-5 text-center"><button class="btn btn-info profile-button" type="submit">Lưu thông tin</button></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3 py-5">
+                                        <div class="d-flex justify-content-between align-items-center experience" style=" margin-bottom: -20px; ">
+	                                        <span style="font-weight:700">Thông tin khác</span>	                               
+                                        </div><br>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">Mã Số Sinh Viên</label><input type="text" class="form-control" readonly placeholder="Mã Ngành" ></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">Ngành</label><input type="text" class="form-control" readonly placeholder="Lớp" ></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">Lớp</label><input type="text" class="form-control" readonly placeholder="Lớp" ></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">Niên khóa</label><input type="text" class="form-control" readonly placeholder="Niên khóa" ></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">Số tài khoản ngân hàng</label><input name="sTKNH" type="text" class="form-control" placeholder="Số TK Ngân Hàng" ></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12"><label class="labels">Chi nhánh ngân hàng</label><input name="sCNNH" type="text" class="form-control" placeholder="Chi nhánh ngân hàng" ></div>
+                                        </div>                         
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

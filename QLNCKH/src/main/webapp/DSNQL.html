@@ -1,0 +1,269 @@
+<!--  
+	@model IEnumerable < QLNCKH.Models.DTO.DTDeTai >
+	@{
+	    ViewBag.Title = "DsDeTai";
+	    Layout = "~/Views/Shared/_LayoutQuanLyTong.html";
+	}
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    #txtLink:hover {
+        border: 1px solid #6bacb2;
+        cursor: pointer
+    }
+
+    h4 {
+        margin: auto;
+        font-weight: 600;
+        font-size: 21px;
+    }
+
+    .modal-header {
+        display: flex;
+    }
+
+        .modal-header .close {
+            padding: 0;
+            margin: 0;
+        }
+
+    .badge-color-success {
+        background-color: #d6f0e0;
+        color: #0d6832;
+    }
+
+    .badge-color-primary {
+        background-color: #dfe7f6;
+        color: #2c58a0;
+    }
+
+    .badge-color-warning {
+        background-color: #fbf0da;
+        color: #73510d;
+    }
+</style>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<!--  <script src="~/Theme/toast/js/js-toast.js"></script>-->
+	<!-- <script>
+	
+	    $(document).ready(function () {
+	        $('#mytable').DataTable();
+	    });
+	
+	</script>-->
+	<div class="content-wrapper">
+    <div id="toast">
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2 style="text-align:center">Danh Sách Người Quản Lý</h2>
+                    <br />
+                    <br />
+                    <div style="display:flex;justify-content:space-between">                                       
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+
+                                <table class="table" id="mytable">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th>
+                                               <h5>Mã quản lý</h5> <!--   @Html.DisplayNameFor(model => model.TenDeTai)-->
+                                            </th>                                          
+                                            <th>
+                                                <h5>Họ tên</h5>
+                                            </th>
+                                            <th>
+                                                <h5>Ngày sinh</h5>
+                                            </th>
+                                            <th>
+                                                <h5>Giới tính</h5>
+                                            </th>
+                                           <!--   @*<th style="text-align:center"> @Html.DisplayName("Hành Động")</th>*@-->
+                                        </tr>
+                                    </thead>
+<!-- 
+                                    @foreach (var item in Model)
+                                    {-->
+                                        <tr id="@item.MaDeTai">
+                                            <td>
+                                            <h5>Ten De tai</h5>
+                                               <!--   @Html.DisplayFor(modelItem => item.TenDeTai)-->
+                                            </td>
+                                            <td>
+                                            <!--  
+                                                @Html.DisplayFor(modelItem => item.MaSoSinhVien)-->
+                                            </td>
+                                            <td>
+                                            <!--  
+                                                @Html.DisplayFor(modelItem => item.TenGiangVien)-->
+                                            </td>
+                                            <td>
+                                            <!--  
+                                                @Html.DisplayFor(modelItem => item.GhiChu)-->
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                            <td style="text-align:center">
+                                    <button class="btn btn-sm btn-info" name="view"><i class="fa fa-bars"></i></button>
+                                    <button class="btn btn-sm btn-warning" name="update"><i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-sm btn-warning" name="delete"><i class=" fa fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-warning" name="update"><i class="fa fa-edit"></i></button>
+                                                                      
+                                </td>
+                                        </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalPCDetai" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 id="textbody">Bạn thật sư muốn xóa!</h5>
+                <div id="body" class="form-group">
+                    <label>Chọn Hội Đồng: </label>
+                    <select class="form-control" id="Select_DsHD">
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btn-addPCDT">Xác Nhận</button>
+                <button type="button" class="btn btn-success" id="btn-HuyPCDT">Đồng ý</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="modalDeTai" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="card-body">
+                <h3 style="font-weight:700;text-align:center;" class="modal-title" id="modalTitle"></h3>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tr>
+                        <td hidden>
+                            <input type="text" value="" hidden />
+                        </td>
+                        <td>
+                            <label>Họ Tên:</label>
+                            <input type="text" class="form-control" id="txtTenDT" />
+                        </td>
+                       
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Căn cước công dân:</label>
+                            <input type="text" class="form-control" id="txtTenSV" />
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Ngày sinh:</label>
+                            <input type="text" class="form-control" id="txtTenHD" />
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Giới tính:</label>
+                            <input type="text" class="form-control" id="txtTenHD" />
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Số điện thoại:</label>
+                            <input type="text" class="form-control" id="txtTenHD" />
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Địa chỉ:</label>
+                            <input type="text" class="form-control" id="txtTenHD" />
+                        </td>
+                        
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id ="btnDong"class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button"  id ="btnLuu" class="btn btn-secondary" data-dismiss="modal">Lưu</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<script>
+ 	
+    //$(document).ready(function () {
+   //     Get_DSHD();
+    //});
+    $(document).on("click", "button[name='delete']", function () {
+    	console.log("Button Delete Clicked!");
+        let idhuy =  $(this).closest('tr').attr('id');
+        $('#ModalTitleDeTai').text("Hủy Đề Tài");
+        $('#textbody').show();
+        $('#btn-HuyPCDT').show();
+        $('#btn-addPCDT').hide();
+        $('#body').hide();
+        $("#modalPCDetai").modal();
+        });
+    $(document).on('click', "button[name='update']", function () {  
+        console.log("Button 'update' clicked!");
+        let id = $(this).closest('tr').attr('id');
+        $('#ModalTitleDeTai').text("Phân công hội đồng cho đề tài");
+        $('#body').show();
+        $('#btnDong').hide();
+        $('#btnLuu').show();
+        $('#textbody').hide();
+        $('#modalDeTai').modal();      
+    });
+    $(document).on('click', "button[name='view']", function () {  
+        console.log("Button 'update' clicked!");
+        let id = $(this).closest('tr').attr('id');
+        $('#ModalTitleDeTai').text("Chi Tiết Đề Tài");
+        $('#body').show();
+        $('#btnDong').show();
+        $('#btnLuu').hide();
+        $('#modalDeTai').modal();      
+    });
+    $(document).on('click', "button[name='plus']", function () {  
+        console.log("Button 'update' clicked!");
+        let id = $(this).closest('tr').attr('id');
+        $('#ModalTitleDeTai').text("Chi Tiết Đề Tài");
+        $('#body').show();
+        $('#btn-HuyPCDT').hide();
+        $('#btn-addPCDT').show();
+        $('#textbody').hide();
+        $('#modalPCDetai').modal();      
+    });
+</script>
+</body>
+</html>
